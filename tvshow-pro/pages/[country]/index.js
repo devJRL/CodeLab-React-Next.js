@@ -1,8 +1,18 @@
+import Thumbnail from '../../components/Thumbnail'
+
 // [SAMPLE] Fetching Data on Server side (Next.js)
 const CountryHome = ({ shows }) => {
   const renderShows = () => {
     return shows.map(({ show }, index) => {
-      return <li key={index}>[{show.id}] {show.name}</li>
+      return (
+        <li key={index}>
+          <Thumbnail
+            imageUrl={show.image.medium}
+            showName={show.name}
+            showId={show.id}
+          />
+        </li>
+      )
     })
   }
   return <ul className="tvshows">{renderShows()}</ul>
