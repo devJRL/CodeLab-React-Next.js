@@ -21,3 +21,12 @@ yarn dev
   # Served on 3000 port
   # http://localhost:3000
 ```
+
+## Dependencies
+
+- [@zeit/next-sass](https://github.com/vercel/next-plugins/tree/master/packages/next-sass)
+
+  ```bash
+  # Support Sass
+  yarn add @zeit/next-sass node-sass
+  ```

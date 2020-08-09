@@ -1,4 +1,4 @@
-import Thumbnail from '../../components/Thumbnail'
+import ThumbnailWtihSass from '../../components/ThumbnailWithSass'
 
 // [SAMPLE] Fetching Data on Server side (Next.js)
 const CountryHome = ({ shows }) => {
@@ -6,7 +6,7 @@ const CountryHome = ({ shows }) => {
     return shows.map(({ show }, index) => {
       return (
         <li key={index}>
-          <Thumbnail
+          <ThumbnailWtihSass
             imageUrl={show.image.medium}
             showName={show.name}
             showId={show.id}
