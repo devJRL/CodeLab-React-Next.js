@@ -1,5 +1,7 @@
 const CountryHome = ({ shows }) => {
 
+  console.log("Process in Client side - { shows }: " + { shows })
+
   const renderShows = () => {
     return shows.map((showItem, index) => {
       const { show } = showItem
@@ -20,9 +22,7 @@ CountryHome.getInitialProps = async context => {
   const country = context.query.country || 'us'
 
   // [ISO-3166-1 :: Country code] https://en.wikipedia.org/wiki/ISO_3166-1
-  console.log("Dynamic Context catching - country:", country) // logged on Server, not on client
-  // http://localhost:3000/ca >> Dynamic Context catching - country: ca
-  // http://localhost:3000/br >> Dynamic Context catching - country: br
+  console.log("Process in Server side - Dynamic Context catching [country:", country, "]")
 
   const res = await fetch(
     `http://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
