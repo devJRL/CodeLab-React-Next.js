@@ -1,3 +1,5 @@
+import ThumbnailStyles from './styles';
+
 const Thumbnail = (
   // props from parent
   { imageUrl, showName, showId }
@@ -9,6 +11,8 @@ const Thumbnail = (
       <h3 className="thumbnail__name">
         {showName} ({showId})
       </h3>
+
+      <style jsx>{ThumbnailStyles}</style>
     </div>
   )
 }
