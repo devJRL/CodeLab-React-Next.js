@@ -1,7 +1,7 @@
 import ThumbnailWtihSass from '../../components/ThumbnailWithSass'
 
 // [SAMPLE] Fetching Data on Server side (Next.js)
-const CountryHome = ({ shows }) => {
+const CountryHome = ({ shows, country }) => {
   const renderShows = () => {
     return shows.map(({ show }, index) => {
       return (
@@ -10,7 +10,8 @@ const CountryHome = ({ shows }) => {
           <ThumbnailWtihSass
             imageUrl={(show.image && show.image.medium) || undefined}
             showName={show.name}
-            showId={show.id}
+            href="/[country]/[showId]"
+            as={`/${country}/${show.id}`}
           />
         </li>
       )
@@ -27,7 +28,7 @@ CountryHome.getInitialProps = async context => {
     `http://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
   )
   const json = await res.json();
-  return { shows: json }
+  return { shows: json, country }
 }
 
 // http://localhost:3000/[us]
