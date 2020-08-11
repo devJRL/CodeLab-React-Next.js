@@ -6,8 +6,9 @@ const CountryHome = ({ shows }) => {
     return shows.map(({ show }, index) => {
       return (
         <li key={index}>
+          {/* Search: World's Most Extreme (40594) : Not served Image's url (null)*/}
           <ThumbnailWtihSass
-            imageUrl={show.image.medium}
+            imageUrl={(show.image && show.image.medium) || undefined}
             showName={show.name}
             showId={show.id}
           />

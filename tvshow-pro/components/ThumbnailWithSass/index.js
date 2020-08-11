@@ -3,7 +3,9 @@ import './styles.scss'
 
 const ThumbnailWtihSass = (
   // props from parent
-  { imageUrl, showName, showId }
+  { imageUrl = 'https://via.placeholder.com/210x295?text=No%20image', // default value for undefined
+    showName,
+    showId }
 ) => {
   // Render with props
   return (
