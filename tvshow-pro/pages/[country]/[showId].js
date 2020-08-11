@@ -1,15 +1,18 @@
 import axios from 'axios'
+import parse from 'html-react-parser' // yarn add html-react-parser
 
 const ShowDetail = ({ show }) => {
-  const { name, image } = show
+  const { image, name, summary } = show;
 
   return (
     <div className="show-details">
-      <hi>{name}</hi>
       <div
         className="show-details__poster"
         style={{ backgroundImage: `url(${image.original})` }}
       ></div>
+
+      <h1>{name}</h1>
+      {parse(summary)}
 
       <style jsx>{`
         .show-details__poster {
