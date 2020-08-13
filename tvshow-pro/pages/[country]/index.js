@@ -28,9 +28,6 @@ const CountryHome = ({ shows, country }) => {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 20px;
-          padding: 0;
-          margin: 0;
-          list-style-type: none;
         }
       `}</style>
     </div>
