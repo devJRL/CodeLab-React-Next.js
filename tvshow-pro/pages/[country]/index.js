@@ -1,4 +1,5 @@
 import ThumbnailWtihSass from '../../components/ThumbnailWithSass'
+import Header from '../../components/Header';
 
 // [SAMPLE] Fetching Data on Server side (Next.js)
 const CountryHome = ({ shows, country }) => {
@@ -17,7 +18,12 @@ const CountryHome = ({ shows, country }) => {
       )
     })
   }
-  return <ul className="tvshows">{renderShows()}</ul>
+  return (
+    <div className="home">
+      <Header />
+      <ul className="tvshows">{renderShows()}</ul>
+    </div>
+  )
 }
 
 // https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
