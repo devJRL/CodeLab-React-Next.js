@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const countries = [
   { label: 'us', name: 'United States' },
-  { label: 'bz', name: 'Brazil' },
+  { label: 'br', name: 'Brazil' },
 ]
 
 // router: ServerRouter {
@@ -26,6 +26,11 @@ const Header = () => {
   const selectorChange = event => {
     // set 'value in event' state
     setSelectedCountry(event.target.value)
+    // redirect to '/[country]'
+    router.push(
+      `/[country]`, // url: page template
+      `/${event.target.value}` // as: mask
+    )
   }
 
   // Generate with map() of Array
