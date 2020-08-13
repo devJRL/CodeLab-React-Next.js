@@ -16,7 +16,11 @@ const ShowDetail = ({ show }) => {
       <h1>{name}</h1>
       {parse(summary)}
 
-      <Cast cast={_embedded.cast} />
+      {/* Cast Component Dynamic Handling */}
+      {
+        _embedded.cast.length > 0 &&
+        <Cast cast={_embedded.cast} />
+      }
 
       <style jsx>{`
         .show-details__poster {
@@ -31,7 +35,8 @@ const ShowDetail = ({ show }) => {
 // http://localhost:3000/[us]/[123]
 export default ShowDetail;
 
-ShowDetail.getInitialProps = async () => {
-  const res = await axios.get(`http://api.tvmaze.com/shows/1?embed=cast`)
+ShowDetail.getInitialProps = async ({ query }) => {
+  const { showId } = query; // `query` like.. { country: 'us', showId: '5617' }
+  const res = await axios.get(`http://api.tvmaze.com/shows/${showId}?embed=cast`)
   return { show: res.data }
 }
