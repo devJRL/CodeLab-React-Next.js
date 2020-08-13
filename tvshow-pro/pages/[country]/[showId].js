@@ -1,7 +1,6 @@
 import axios from 'axios'
 import parse from 'html-react-parser' // yarn add html-react-parser
 
-import Header from '../../components/Header'
 import Cast from '../../components/Cast'
 
 const ShowDetail = ({ show }) => {
@@ -9,8 +8,6 @@ const ShowDetail = ({ show }) => {
 
   return (
     <div className="show-details">
-      <Header />
-
       <div
         className="show-details__poster"
         style={{ backgroundImage: `url(${image.original})` }}

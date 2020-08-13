@@ -59,6 +59,7 @@ const Header = () => {
       <style jsx>{`
         .header {
           padding: 20px;
+          margin-bottom: 10px;
           background-color: #333;
           color: #fff;
           text-align: center;

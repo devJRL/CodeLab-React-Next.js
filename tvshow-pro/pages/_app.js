@@ -1,5 +1,12 @@
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import Header from '../components/Header'
+
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <>{/* React Flagment */}
+      <Header />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default MyApp

@@ -1,5 +1,4 @@
 import ThumbnailWtihSass from '../../components/ThumbnailWithSass'
-import Header from '../../components/Header';
 
 // [SAMPLE] Fetching Data on Server side (Next.js)
 const CountryHome = ({ shows, country }) => {
@@ -19,9 +18,21 @@ const CountryHome = ({ shows, country }) => {
     })
   }
   return (
-    <div className="home">
-      <Header />
-      <ul className="tvshows">{renderShows()}</ul>
+    <div>
+      <ul className="tvshows-grid">
+        {renderShows()}
+      </ul>
+
+      <style jsx>{`
+        .tvshows-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          padding: 0;
+          margin: 0;
+          list-style-type: none;
+        }
+      `}</style>
     </div>
   )
 }
