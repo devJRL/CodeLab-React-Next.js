@@ -1,21 +1,26 @@
+import axios from "axios";
+
+import CustomError from "../_error";
 import ThumbnailWtihSass from "../../components/ThumbnailWithSass";
 
 // [SAMPLE] Fetching Data on Server side (Next.js)
-const CountryHome = ({ shows, country }) => {
+const CountryHome = ({ shows, country, statusCode }) => {
+  // Error Handling
+  if (statusCode) {
+    // Custom Error with `pages/_error.js`
+    return <CustomError statusCode={statusCode} />;
+  }
   const renderShows = () => {
-    return shows.map(({ show }, index) => {
-      return (
-        <li key={index}>
-          {/* Search: World's Most Extreme (40594) : Not served Image's url (null)*/}
-          <ThumbnailWtihSass
-            imageUrl={(show.image && show.image.medium) || undefined}
-            showName={show.name}
-            href="/[country]/[showId]"
-            as={`/${country}/${show.id}`}
-          />
-        </li>
-      );
-    });
+    return shows.map(({ show }, index) => (
+      <li key={index}>
+        <ThumbnailWtihSass
+          imageUrl={(show.image && show.image.medium) || undefined}
+          showName={show.name}
+          href="/[country]/[showId]"
+          as={`/${country}/${show.id}`}
+        />
+      </li>
+    ));
   };
   return (
     <div>
@@ -34,13 +39,26 @@ const CountryHome = ({ shows, country }) => {
 
 // https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
 CountryHome.getInitialProps = async (context) => {
-  // Dynamic Context Fetching
-  const country = context.query.country || "us"; // undefined > Function, number, string, boolean > Object
-  const res = await fetch(
-    `http://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
-  );
-  const json = await res.json();
-  return { shows: json, country };
+  try {
+    // Dynamic Context Fetching
+    const country = context.query.country || "us"; // undefined > Function, number, string, boolean > Object
+    const res = await axios.get(
+      `http://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
+    );
+    const json = res.data;
+
+    // Offer props to Component
+    return {
+      shows: json,
+      country,
+    };
+  } catch (error) {
+    // Check status code for error handling
+    console.error("CountryHome.getInitialProps -> error", error);
+    return {
+      statusCode: error.response ? error.response.status : 500,
+    };
+  }
 };
 
 // http://localhost:3000/[us]

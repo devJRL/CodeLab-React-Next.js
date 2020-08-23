@@ -55,6 +55,7 @@ ShowDetail.getInitialProps = async ({ query }) => {
       show: res.data,
     };
   } catch (error) {
+    // Check status code for error handling
     console.error("ShowDetail.getInitialProps -> error", error);
     return {
       statusCode: error.response ? error.response.status : 500,
