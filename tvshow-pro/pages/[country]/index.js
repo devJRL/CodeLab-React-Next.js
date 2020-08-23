@@ -1,4 +1,4 @@
-import ThumbnailWtihSass from '../../components/ThumbnailWithSass'
+import ThumbnailWtihSass from "../../components/ThumbnailWithSass";
 
 // [SAMPLE] Fetching Data on Server side (Next.js)
 const CountryHome = ({ shows, country }) => {
@@ -14,14 +14,12 @@ const CountryHome = ({ shows, country }) => {
             as={`/${country}/${show.id}`}
           />
         </li>
-      )
-    })
-  }
+      );
+    });
+  };
   return (
     <div>
-      <ul className="tvshows-grid">
-        {renderShows()}
-      </ul>
+      <ul className="tvshows-grid">{renderShows()}</ul>
 
       <style jsx>{`
         .tvshows-grid {
@@ -31,19 +29,19 @@ const CountryHome = ({ shows, country }) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
 // https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
-CountryHome.getInitialProps = async context => {
+CountryHome.getInitialProps = async (context) => {
   // Dynamic Context Fetching
-  const country = context.query.country || 'us'
+  const country = context.query.country || "us"; // undefined > Function, number, string, boolean > Object
   const res = await fetch(
     `http://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
-  )
+  );
   const json = await res.json();
-  return { shows: json, country }
-}
+  return { shows: json, country };
+};
 
 // http://localhost:3000/[us]
 export default CountryHome;
