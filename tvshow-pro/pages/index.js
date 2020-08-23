@@ -1,14 +1,16 @@
-import Link from 'next/link'
+import Router from "next/router";
 
-export default function Home() {
-  return (
-    <div>
-      <h2>This is my Home Page.</h2>
-      <p>
-        <Link href="/exp/about">
-          <a>About('/exp/about') with 'Link' component.</a>
-        </Link>
-      </p>
-    </div>
-  )
-}
+const Home = () => null;
+
+// Redirect on server side
+Home.getInitialProps = (context) => {
+  const country = context.query.country || "us";
+
+  process.browser
+    ? Router.replace("/[country]", `/${country}`)
+    : context.res.writeHead(302, { Location: `/${country}` });
+
+  context.res.end();
+};
+
+export default Home;
