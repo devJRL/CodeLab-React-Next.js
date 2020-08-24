@@ -43,7 +43,7 @@ CountryHome.getInitialProps = async (context) => {
     // Dynamic Context Fetching
     const country = context.query.country || "us"; // undefined > Function, number, string, boolean > Object
     const res = await axios.get(
-      `http://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
+      `https://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
     );
     const json = res.data;
 

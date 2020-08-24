@@ -48,7 +48,7 @@ ShowDetail.getInitialProps = async ({ query }) => {
   try {
     const { showId } = query; // `query` like.. { country: 'us', showId: '5617' }
     const res = await axios.get(
-      `http://api.tvmaze.com/shows/${showId}?embed=cast`
+      `https://api.tvmaze.com/shows/${showId}?embed=cast`
     );
     // Offer props to Component
     return {
