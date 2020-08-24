@@ -1,4 +1,5 @@
 import axios from "axios";
+import cookies from "nookies";
 
 import CustomError from "../_error";
 import ThumbnailWtihSass from "../../components/ThumbnailWithSass";
@@ -40,8 +41,9 @@ const CountryHome = ({ shows, country, statusCode }) => {
 // https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
 CountryHome.getInitialProps = async (context) => {
   try {
+    const { defaultCountry } = cookies.get(context);
     // Dynamic Context Fetching
-    const country = context.query.country || "us"; // undefined > Function, number, string, boolean > Object
+    const country = context.query.country || defaultCountry || "us";
     const res = await axios.get(
       `https://api.tvmaze.com/schedule?country=${country}&date=2014-12-01`
     );
