@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import cookies from "nookies";
 
 const countries = [
   { label: "us", name: "United States" },
@@ -33,6 +34,13 @@ const Header = () => {
       `/${event.target.value}` // as: mask
     );
   };
+
+  useEffect(() => {
+    cookies.set(null, "defaultCountry", selectedCountry, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
+  }, [selectedCountry]);
 
   // Generate with map() of Array
   const renderCountries = () => {
