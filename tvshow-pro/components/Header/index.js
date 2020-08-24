@@ -47,8 +47,10 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link href="/">
-        <a className="msg">Go Home('/') with 'Link' component.</a>
+      <Link href={`/${selectedCountry}`}>
+        <a className="msg">
+          Go Home('/{selectedCountry}') with 'Link' component.
+        </a>
       </Link>
       <select value={selectedCountry} onChange={selectorChange}>
         {renderCountries()}
