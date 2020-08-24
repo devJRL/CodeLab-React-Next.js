@@ -30,3 +30,12 @@ yarn dev
   # Support Sass
   yarn add @zeit/next-sass node-sass
   ```
+
+- [maticzav/nookies](https://github.com/maticzav/nookies)
+
+  ```bash
+  # Support to handle cookie in SSR(next.js)
+  yarn add nookie
+  ```
+
+  [EditThisCookie - Chrome Extension](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg/related?hl=ko)
