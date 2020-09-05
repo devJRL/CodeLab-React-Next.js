@@ -5,14 +5,22 @@ const Home = () => null;
 
 // Redirect on server side
 Home.getInitialProps = (context) => {
+  if (cookies.get(context) === "undefined") {
+    cookies.destroy(null, defaultCountry);
+  }
   const { defaultCountry } = cookies.get(context);
   const country = context.query.country || defaultCountry || "us";
 
-  process.browser
-    ? Router.replace("/[country]", `/${country}`)
-    : context.res.writeHead(302, { Location: `/${country}` });
+  if (process.browser) {
+    Router.replace("/[country]", `/${country}`);
+  } else {
+    context.res.writeHead(302, { Location: `/${country}` });
+    context.res.end();
+  }
 
-  context.res.end();
+  return {};
+  // Return empty json
+  // To Prevent Error: "Home.getInitialProps()" should resolve to an object. But found "undefined" instead.
 };
 
 export default Home;
