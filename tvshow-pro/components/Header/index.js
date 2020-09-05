@@ -62,9 +62,7 @@ const Header = () => {
   return (
     <div className="header">
       <Link href={`/${selectedCountry}`}>
-        <a className="msg">
-          Go Home('/{selectedCountry}') with 'Link' component.
-        </a>
+        <a className="msg">Go Home('/{selectedCountry}')</a>
       </Link>
 
       <select value={selectedCountry} onChange={selectorChange}>
@@ -78,7 +76,7 @@ const Header = () => {
       )}
 
       {isAuthenticated() && (
-        <Link href="/[country]" as="/us">
+        <Link href="/[country]" as={`/${selectedCountry}`}>
           <a className="signout" onClick={handleSignOut}>
             Sign Out
           </a>

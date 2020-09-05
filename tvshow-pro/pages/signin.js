@@ -34,7 +34,13 @@ const Signin = () => {
         { ...signinInfo }
       );
       cookies.set(null, "token", response.data.token, { path: "/" });
-      router.replace("/[country]", "/us");
+
+      // Route with previous planned context (from cookie)
+      const { plannedRoute } = cookies.get();
+      const parsedPlanned = plannedRoute && JSON.parse(plannedRoute);
+      const plannedHref = (parsedPlanned && parsedPlanned.href) || "/[country]";
+      const plannedAs = (parsedPlanned && parsedPlanned.as) || "/us";
+      router.replace(plannedHref, plannedAs);
     } catch (error) {
       setError(error.message);
     }

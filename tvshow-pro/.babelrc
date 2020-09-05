@@ -1,0 +1,13 @@
+// yarn add --dev babel-plugin-styled-components
+// https: //github.com/vercel/next.js/issues/7322#issuecomment-683214174
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true
+      }
+    ]
+  ]
+}

@@ -7,6 +7,19 @@ const signinUrl = "/signin";
 const authenticate = (context) => {
   const { token } = cookies.get(context);
 
+  // Remove previous planned context (from cookie)
+  cookies.destroy(null, "plannedRoute");
+  // Save current planned context (in cookie)
+  cookies.set(
+    context,
+    "plannedRoute",
+    JSON.stringify({
+      href: context.pathname,
+      as: context.asPath,
+    }),
+    { path: "/" }
+  );
+
   if (context.req && !token) {
     // Redirect to Signin Page (in Client)
     context.res.writeHead(302, { Location: `${signinUrl}` });
@@ -39,7 +52,7 @@ const withAuthorization = (WrapperedComponent) => {
         WrapperedComponent.getInitialProps &&
         (await WrapperedComponent.getInitialProps(context));
       // Return with override components
-      return { ...token, componentProps };
+      return { token, ...componentProps };
     }
     render() {
       return <WrapperedComponent {...this.props} />;

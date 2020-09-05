@@ -1,5 +1,5 @@
-import axios from "axios";
 import parse from "html-react-parser"; // yarn add html-react-parser
+import axios from "axios";
 
 import Cast from "../../components/Cast";
 // import Error from "next/error";
