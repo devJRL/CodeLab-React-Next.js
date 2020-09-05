@@ -23,6 +23,30 @@ const MyApp = ({ Component, pageProps }) => {
             margin: 0;
             list-style-type: none;
           }
+
+          :global(form) {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            text-align: center;
+          }
+
+          :global(input) {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          :globla(button) {
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #f4b741;
+            border-color: transparent;
+            border-radius: 4px;
+          }
         `}
       </style>
     </>
