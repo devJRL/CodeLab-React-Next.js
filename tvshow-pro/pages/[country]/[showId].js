@@ -22,15 +22,21 @@ const ShowDetail = ({ show = {}, statusCode }) => {
       <div
         className="show-details__poster"
         style={{
-          backgroundImage: `url(${image.original})`,
+          backgroundImage: `url(${
+            image && image.original
+              ? image.original
+              : "https://www.freeiconspng.com/uploads/no-image-icon-23.jpg"
+          })`,
         }}
       ></div>
 
-      <h1>{name}</h1>
-      {parse(summary)}
+      <h1>{name || "Invalid Name"}</h1>
+      {parse(summary || "No data! API doesn't serve data about this show.")}
 
       {/* Cast Component Dynamic Handling */}
-      {_embedded.cast.length > 0 && <Cast cast={_embedded.cast} />}
+      {_embedded && _embedded._cast && _embedded.cast.length > 0 && (
+        <Cast cast={_embedded.cast} />
+      )}
 
       <style jsx>{`
         .show-details__poster {
