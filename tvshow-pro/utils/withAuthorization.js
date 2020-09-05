@@ -22,6 +22,11 @@ const authenticate = (context) => {
   return token;
 };
 
+const isAuthenticated = (context) => {
+  const { token } = cookies.get(context);
+  return token;
+};
+
 // Check AUTH
 const withAuthorization = (WrapperedComponent) => {
   // Override Component with React
@@ -42,4 +47,4 @@ const withAuthorization = (WrapperedComponent) => {
   };
 };
 
-export { withAuthorization };
+export { withAuthorization, isAuthenticated };

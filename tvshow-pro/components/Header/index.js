@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import cookies from "nookies";
 
+import { isAuthenticated } from "../../utils/withAuthorization";
+
 const countries = [
   { label: "us", name: "United States" },
   { label: "br", name: "Brazil" },
@@ -35,6 +37,10 @@ const Header = () => {
     );
   };
 
+  const handleSignOut = () => {
+    cookies.destroy(null, "token");
+  };
+
   useEffect(() => {
     cookies.set(null, "defaultCountry", selectedCountry, {
       maxAge: 30 * 24 * 60 * 60,
@@ -60,9 +66,24 @@ const Header = () => {
           Go Home('/{selectedCountry}') with 'Link' component.
         </a>
       </Link>
+
       <select value={selectedCountry} onChange={selectorChange}>
         {renderCountries()}
       </select>
+
+      {!isAuthenticated() && (
+        <Link href="/signin">
+          <a className="signin">Sign In</a>
+        </Link>
+      )}
+
+      {isAuthenticated() && (
+        <Link href="/[country]" as="/us">
+          <a className="signout" onClick={handleSignOut}>
+            Sign Out
+          </a>
+        </Link>
+      )}
 
       <style jsx>{`
         .header {
@@ -71,10 +92,19 @@ const Header = () => {
           background-color: #333;
           color: #fff;
           text-align: center;
+          display: flex;
+          justify-content: space-between;
         }
-        .msg {
+        .header > .msg {
           color: #fff;
-          margin-right: 200px;
+        }
+        .header > .signin {
+          font-weight: bold;
+          color: yellow;
+        }
+        .header > .signout {
+          font-weight: bold;
+          color: red;
         }
       `}</style>
     </div>
