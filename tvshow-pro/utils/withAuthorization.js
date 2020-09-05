@@ -10,6 +10,7 @@ const authenticate = (context) => {
   if (context.req && !token) {
     // Redirect to Signin Page (in Client)
     context.res.writeHead(302, { Location: `${signinUrl}` });
+    context.res.end();
     return;
   }
 

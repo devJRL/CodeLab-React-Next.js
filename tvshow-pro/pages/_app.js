@@ -47,6 +47,11 @@ const MyApp = ({ Component, pageProps }) => {
             border-color: transparent;
             border-radius: 4px;
           }
+
+          :global(.error) {
+            color: red;
+            padding-bottom: 10px;
+          }
         `}
       </style>
     </>

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import cookies from "nookies";
+import Link from "next/link";
+
+import validatorUtils from "../utils/validators";
 import CustomInput from "../components/CustomInput";
 
 const initialState = {
@@ -11,10 +14,17 @@ const initialState = {
 
 const Signin = () => {
   const [signinInfo, setSigninInfo] = useState(initialState);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit_toGetToken = async (event) => {
     event.preventDefault();
+
+    const { email, password } = signinInfo;
+    if (!email || !password) {
+      setError("Please fill the form.");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -26,8 +36,7 @@ const Signin = () => {
       cookies.set(null, "token", "token", response.data.token, { path: "/" });
       router.replace("/");
     } catch (error) {
-      console.error("handleSubmit_toGetToken -> error", error);
-      alert("something wrong!");
+      setError(error.message);
     }
   };
 
@@ -48,6 +57,7 @@ const Signin = () => {
           placeholder="Insert Email"
           value={signinInfo.email}
           onChange={handleInputChange_withState}
+          onBlur={validatorUtils.isValidEmail}
         />
         <CustomInput
           type="password"
@@ -55,8 +65,15 @@ const Signin = () => {
           placeholder="Insert Password"
           value={signinInfo.password}
           onChange={handleInputChange_withState}
+          onBlur={validatorUtils.isNotEmpty}
         />
+
+        <Link href="/signup">
+          <a>Join us</a>
+        </Link>
         <button onClick={handleSubmit_toGetToken}>Sign In</button>
+
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   );

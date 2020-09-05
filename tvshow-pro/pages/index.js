@@ -5,9 +5,6 @@ const Home = () => null;
 
 // Redirect on server side
 Home.getInitialProps = (context) => {
-  if (cookies.get(context) === "undefined") {
-    cookies.destroy(null, defaultCountry);
-  }
   const { defaultCountry } = cookies.get(context);
   const country = context.query.country || defaultCountry || "us";
 
