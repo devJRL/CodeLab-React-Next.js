@@ -1,0 +1,12 @@
+# REST-Clinet Extension | https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+# AUTH | SignIn
+POST https://iwallet-api.herokuapp.com/api/auth/signin
+Content-Type: application/json; charset=utf-8
+
+{
+	"email": "bo@email.com",
+	"password": "bo"
+}
+
+###
