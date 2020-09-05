@@ -1,0 +1,11 @@
+# REST-Clinet Extension | https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+# TV Show Pro List > US | 2014.12.01
+GET https://api.tvmaze.com/schedule?country=us&date=2014-12-01 HTTP/1.1
+
+###
+
+# TV Show Pro Detail | id: 5617
+GET https://api.tvmaze.com/shows/5617?embed=cast HTTP/1.1
+
+###
