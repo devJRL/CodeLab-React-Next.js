@@ -8,30 +8,31 @@ import validatorUtils from "../utils/validators";
 import CustomInput from "../components/CustomInput";
 
 const initialState = {
+  name: "",
   email: "",
   password: "",
 };
 
-const Signin = () => {
-  const [signinInfo, setSigninInfo] = useState(initialState);
+const Signup = () => {
+  const [signupInfo, setSignupInfo] = useState(initialState);
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleSubmit_toGetToken = async (event) => {
+  const handleSubmit_toSignup = async (event) => {
     event.preventDefault();
 
-    const { email, password } = signinInfo;
-    if (!email || !password) {
-      setError("Please fill the form.");
+    const { name, email, password } = signupInfo;
+    if (!name || !email || !password) {
+      setError("Please fill the signup form.");
       return;
     }
 
     try {
       const response = await axios.post(
         // REST API URL
-        "https://iwallet-api.herokuapp.com/api/auth/signin",
+        "https://iwallet-api.herokuapp.com/api/auth/signup",
         // Payload
-        { ...signinInfo }
+        { ...signupInfo }
       );
       cookies.set(null, "token", response.data.token, { path: "/" });
       router.replace("/[country]", "/us");
@@ -42,20 +43,27 @@ const Signin = () => {
 
   const handleInputChange_withState = (event) => {
     const { name, value } = event.target;
-    setSigninInfo({
-      ...signinInfo,
+    setSignupInfo({
+      ...signupInfo,
       [name]: `${value}`,
     });
   };
 
   return (
     <div className="signin">
-      <form onSubmit={handleSubmit_toGetToken}>
+      <form onSubmit={handleSubmit_toSignup}>
+        <CustomInput
+          name="name"
+          placeholder="Insert Your Name"
+          value={signupInfo.name}
+          onChange={handleInputChange_withState}
+          onBlur={validatorUtils.isNotEmpty}
+        />
         <CustomInput
           type="email"
           name="email"
           placeholder="Insert Email"
-          value={signinInfo.email}
+          value={signupInfo.email}
           onChange={handleInputChange_withState}
           onBlur={validatorUtils.isValidEmail}
         />
@@ -63,16 +71,16 @@ const Signin = () => {
           type="password"
           name="password"
           placeholder="Insert Password"
-          value={signinInfo.password}
+          value={signupInfo.password}
           onChange={handleInputChange_withState}
           onBlur={validatorUtils.isNotEmpty}
         />
 
-        <Link href="/signup">
-          <a>Join us</a>
+        <Link href="/signin">
+          <a>Already have an account?</a>
         </Link>
-        <button type="submit" onClick={handleSubmit_toGetToken}>
-          Sign In
+        <button type="submit" onClick={handleSubmit_toSignup}>
+          Sign Up
         </button>
 
         {error && <div className="error">{error}</div>}
@@ -81,4 +89,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;
