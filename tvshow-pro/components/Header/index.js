@@ -27,7 +27,7 @@ const Header = () => {
   // CallBack Function for <select> tag
   const selectorChange = (event) => {
     // set 'value in event' state
-    setSelectedCountry(event.target.value);
+    setSelectedCountry(event.target.value || "us"); // "us" for default country
     // redirect to '/[country]'
     router.push(
       `/[country]`, // url: page template

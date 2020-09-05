@@ -4,6 +4,7 @@ import parse from "html-react-parser"; // yarn add html-react-parser
 import Cast from "../../components/Cast";
 // import Error from "next/error";
 import CustomError from "../_error";
+import { withAuthorization } from "../../utils/withAuthorization";
 
 const ShowDetail = ({ show = {}, statusCode }) => {
   // Error Handling
@@ -41,9 +42,6 @@ const ShowDetail = ({ show = {}, statusCode }) => {
   );
 };
 
-// http://localhost:3000/[us]/[123]
-export default ShowDetail;
-
 ShowDetail.getInitialProps = async ({ query }) => {
   try {
     const { showId } = query; // `query` like.. { country: 'us', showId: '5617' }
@@ -62,3 +60,7 @@ ShowDetail.getInitialProps = async ({ query }) => {
     };
   }
 };
+
+// http://localhost:3000/[us]/[123]
+// export default ShowDetail;
+export default withAuthorization(ShowDetail);
