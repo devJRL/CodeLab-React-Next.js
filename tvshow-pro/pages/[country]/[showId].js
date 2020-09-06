@@ -34,9 +34,7 @@ const ShowDetail = ({ show = {}, statusCode }) => {
       {parse(summary || "No data! API doesn't serve data about this show.")}
 
       {/* Cast Component Dynamic Handling */}
-      {_embedded && _embedded._cast && _embedded.cast.length > 0 && (
-        <Cast cast={_embedded.cast} />
-      )}
+      {_embedded.cast.length > 0 && <Cast cast={_embedded.cast} />}
 
       <style jsx>{`
         .show-details__poster {

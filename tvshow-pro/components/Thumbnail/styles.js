@@ -1,4 +1,4 @@
-import css from 'styled-jsx/css'
+import css from "styled-jsx/css";
 
 const ThumbnailStyles = css`
   .thumbnail__image {
@@ -10,6 +10,6 @@ const ThumbnailStyles = css`
     text-align: center;
     padding: 10px;
   }
-`
+`;
 
 export default ThumbnailStyles;

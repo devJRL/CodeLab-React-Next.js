@@ -24,7 +24,9 @@ const Header = () => {
   const router = useRouter();
 
   // Match basic selected option along with 'query' using React-State
-  const [selectedCountry, setSelectedCountry] = useState(router.query.country);
+  const [selectedCountry, setSelectedCountry] = useState(
+    router.query.country || "us"
+  );
 
   // CallBack Function for <select> tag
   const selectorChange = (event) => {
