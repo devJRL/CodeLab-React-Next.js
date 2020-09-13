@@ -1,4 +1,4 @@
-# Modern Server Side Rendering with React & Next.js
+# Modern Server Side Rendering with Next.js
 
 ## Deploy with [Vercel](https://vercel.com/)
 
