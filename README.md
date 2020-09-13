@@ -15,7 +15,10 @@ cd CodeLab-React-Next.js
 yarn install # or npm install
 
 # Build Next.js modules
-yarn next build # or npm next build
+yarn build # or npm run next build
+
+# Run localhost:3000
+yarn start # or npm run next start
 ```
 
 ## Dependencies
