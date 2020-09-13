@@ -1,5 +1,23 @@
 # Modern Server Side Rendering with React & Next.js
 
+## Deploy with [Vercel](https://vercel.com/)
+
+**[https://codelab-react-nextjs.vercel.app](https://codelab-react-nextjs.vercel.app)**
+
+## How to run in localhost?
+
+```bash
+# Clone Git Repository
+git clone https://github.com/devJRL/CodeLab-React-Next.js.git
+cd CodeLab-React-Next.js
+
+# Install node modules
+yarn install # or npm install
+
+# Build Next.js modules
+yarn next build # or npm next build
+```
+
 ## Dependencies
 
 - [Node.js](https://nodejs.org/en/)
